@@ -13,9 +13,7 @@ CREATE TABLE points (id  int, x  double precision, y  double precision, z  doubl
 
 ```
 mkfifo --mode=0666 stars.txt [creation of a named pipe]
-
 COPY points from '/home/hugo/data/las/msh/stars.txt';
-
 spfinalize -i input.las -level 6 -ospb | spdelaunay2d -ispb -osmb | python smb2star.py > stars.txt
 ```
 
@@ -28,3 +26,4 @@ SELECT AddGeometryColumn('public', 'trianglesf', 'geom', -1, 'POLYGON', 2);
 spfinalize -i input.las -level 6 -ospb | spdelaunay2d -ispb -osmb | python smb2sf.py > stars.txt
 copy trianglesf from '/home/hugo/data/las/msh/stars.txt';
 create index trianglesf_gist on trianglesf using gist (geom);
+```
