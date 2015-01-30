@@ -18,7 +18,12 @@ def main():
     i = 1
     k = 1
     #-- skip the header of the file
-    sys.stdin.read(41)
+    b = sys.stdin.read(65)
+    header = struct.unpack('=3cddd5cI5c6f',b)
+    MINX, MINY, sz = header[3:6]
+    n = header[11]
+    lx, ly, lz = header[17:20]
+    hx, hy, hz = header[20:23]
     while 1:
         element_descriptor = struct.unpack('I', sys.stdin.read(4))[0]
         block = sys.stdin.read(384)

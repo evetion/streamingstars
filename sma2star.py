@@ -49,7 +49,7 @@ def main():
                 d[i] = [(xyz[0], xyz[1], xyz[2]), []]
                 i += 1
             
-            else: #-- 'f' is the first char
+            elif line[0] != '#': #-- 'f' is the first char
                 ids = map(int, line[2:].split(' '))
                 
                 for j in range(3):
